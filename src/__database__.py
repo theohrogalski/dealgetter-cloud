@@ -23,12 +23,13 @@ def create_table():
     with get_connection() as conn:
         cur = conn.cursor()
         cur.execute("""
-        CREATE TABLE textdata (
+        CREATE TABLE IF NOT EXISTS textdata (
             id SERIAL PRIMARY KEY,
             textdata TEXT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
         """) 
+        conn.commit()
     print("BASIC TABLE CREATED OR ALREADY EXISTS\n")
 # Close the connector when you're done
 
@@ -39,10 +40,11 @@ def insert_data(data):
         cur = conn.cursor()
         print("got curr")
         cur.execute("""
-        INSERT INTO textdata (id, textdata,created_at)
-        VALUES (%s,%s,%s)
-        """, (1,data, datetime.datetime.now()))
+        INSERT INTO textdata (textdata,created_at)
+        VALUES (%s,%s)
+        """, (data, datetime.datetime.now()))
         print("inserted data")
+        conn.commit()
     connector.close()
     print("GOOD TO EXIST")
 

@@ -16,8 +16,7 @@ def basic_check() -> bool:
     string_hash = sha.hexdigest()
 
     try:
-        with open(f"written_{string_hash}.txt", "w") as file:
-            file.write(requ.prettify())
+       requ.prettify()
     except:
         return False
     return True
