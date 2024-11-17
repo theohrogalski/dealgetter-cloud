@@ -9,5 +9,7 @@ from __database__ import get_connection, create_table, insert_data
 
 
 if __name__ == "__main__":
+    basic_check()
     create_table()
-    check_amazon()
+    insert_data(check_amazon())
+    print("Operations completed. Exiting...")

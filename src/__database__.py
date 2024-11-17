@@ -5,6 +5,7 @@ import pg8000
 import sqlalchemy
 import dotenv
 from dotenv import load_dotenv
+import datetime
 load_dotenv()
 
 connector = Connector()
@@ -24,20 +25,24 @@ def create_table():
         cur.execute("""
         CREATE TABLE textdata (
             id SERIAL PRIMARY KEY,
-            content TEXT NOT NULL,
+            textdata TEXT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
         """) 
-    print("TABLE CREATED OR ALREADY EXISTS\n")
-    connector.close()
+    print("BASIC TABLE CREATED OR ALREADY EXISTS\n")
 # Close the connector when you're done
 
 def insert_data(data):
+    print("started insert")
     with get_connection() as conn:
+        print("cursor set")
         cur = conn.cursor()
+        print("got curr")
         cur.execute("""
-        INSERT INTO textdata (content)
-        VALUES (%s)
-        """, (data,))
+        INSERT INTO textdata (id, textdata,created_at)
+        VALUES (%s,%s,%s)
+        """, (1,data, datetime.datetime.now()))
+        print("inserted data")
     connector.close()
+    print("GOOD TO EXIST")
 

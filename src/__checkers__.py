@@ -22,10 +22,14 @@ def basic_check() -> bool:
         return False
     return True
 
-def check_amazon()-> bool:
+def check_amazon()-> str:
     print("Checking amazon")
+
     requ = requests.get("https://amazon.com/deals")
+    print("requ set 1")
     requ = bs(requ.text, "html.parser")
+    print("requ set 2")
+    return requ
 
     
 def check_walmart() -> bool:
