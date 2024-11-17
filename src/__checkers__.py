@@ -3,6 +3,29 @@ from bs4 import BeautifulSoup as bs
 import regex as re
 import pycuda as pyc
 import hashlib as hl
+import logging
+import scrapy
+from scrapy_playwright.page import PageMethod
+
+class Amztest1Spider(scrapy.Spider):
+    name = "amztest1"
+
+    def start_requests(self):
+        url = 'https://www.amazon.com/deals'
+        yield scrapy.Request(url, callback=self.get_deals_list, 
+            meta={
+                "playwright" : True,
+                "playwright_include_page" : True,
+                "playwright_page_methods" :[
+                        PageMethod('wait_for_selector', 'div#grid-main-container', timeout=0),
+                        PageMethod("evaluate", "window.scrollBy(0, document.body.scrollHeight)"),
+                    ],
+                "playwright_context_kwargs": {"ignore_https_errors": True,},
+                "playwright_page_goto_kwargs": {"wait_until": "networkidle",},
+                "errback":self.errback,
+                }
+        )
+
 
 def basic_check() -> bool:
     print("Running checks with requests, bs4 and ppycuda...\n ")
@@ -19,11 +42,8 @@ def basic_check() -> bool:
     return True
 
 
-def check_amazon() -> bool:
-    print("Checking Amazon for Black Friday deals...\n")
-    requ = requests.get("https://amazon.com/blackfriday")
-    requ = bs(requ.text, "html.parser")
-    requ=requ.prettify()
+def check_amazon(self) -> bool:
+    print()
 
 
 def check_walmart() -> bool:
