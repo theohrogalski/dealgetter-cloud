@@ -42,10 +42,6 @@ def basic_check() -> bool:
     return True
 
 
-def check_amazon(self) -> bool:
-    print()
-
-
 def check_walmart() -> bool:
     print("Checking Walmart...\n")
 
