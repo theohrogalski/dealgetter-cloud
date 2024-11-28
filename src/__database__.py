@@ -1,7 +1,7 @@
 import os
 from google.cloud.sql.connector import Connector, IPTypes
 import pg8000
-
+import requests
 import sqlalchemy
 import dotenv
 from dotenv import load_dotenv
