@@ -37,3 +37,7 @@ def check_walmart() -> bool:
 
 def check_bestbuy() -> bool:
     print("Checking Best Buy...\n")
+    requ=requests.get("https://bestbuy.com/deals")
+    if(requ) :
+        requ=bs(requ.text,"html.parser")
+    

@@ -11,5 +11,21 @@ from __database__ import get_connection, create_table, insert_data
 if __name__ == "__main__":
     basic_check()
     create_table()
-    insert_data(check_amazon())
-    print("Operations completed. Exiting...")
+    x:int = 0
+    while(x>=0):
+        x=input("Input which site. \n 1 for amazon \n 2 for bestbuy \n 3 for walmart \n -1 for ext")
+
+        if(x==1):
+
+            insert_data(check_amazon())
+            print("Operations completed. Exiting...")
+
+        if(x==2) :
+            insert_data(check_bestbuy)
+            print("Operations completed. Exiting...")
+
+        if(x==3) :
+            insert_data(check_walmart)
+            print("Operations completed. Exiting...")
+        else :
+            print("invalid input\n")
