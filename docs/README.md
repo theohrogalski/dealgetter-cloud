@@ -10,3 +10,5 @@ Stores a large amount of data.
 
 https://stackoverflow.com/questions/76568083/how-to-scrape-amazon-todays-deals-page
 
+##[Project Status]
+Unfortunately funds have run out for google cloud. Can be restarded easily with a new cloud instance
